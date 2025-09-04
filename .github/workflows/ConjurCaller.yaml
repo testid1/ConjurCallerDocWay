@@ -1,0 +1,40 @@
+name: Platform Source Code
+ 
+permissions:
+  id-token: write
+  contents: read
+ 
+on:
+  workflow_dispatch:
+ 
+jobs:
+  workflow-1:
+    uses: testid1/ConjurWIZ/.github/workflows/reusable.yaml@main
+    with:
+      CONJUR_ORG_VARIABLE_PATH: "data/vault/conjurtest/conjurtest/username"
+    secrets: inherit
+ 
+  workflow-2:
+    uses: testid1/ConjurWIZ/.github/workflows/reusable.yaml@main
+    with:
+      CONJUR_ORG_VARIABLE_PATH: "data/vault/conjurtest/conjurtest/password"
+    secrets: inherit
+ 
+  workflow-3:
+    uses: testid1/ConjurWIZ/.github/workflows/reusable.yaml@main
+    with:
+      CONJUR_ORG_VARIABLE_PATH: "data/vault/conjurtest/conjurtest/address"
+    secrets: inherit
+ 
+  use-WIZ_CLIENT_SECRET:
+    runs-on: ubuntu-latest
+    needs: [workflow-1, workflow-2, workflow-3]
+    steps:
+      - name: Show masked Wiz secrets
+        run: |
+          echo "::add-mask::${{ needs.workflow-1.outputs.wiz_client_secret }}"
+          echo "::add-mask::${{ needs.workflow-2.outputs.wiz_client_secret }}"
+          echo "::add-mask::${{ needs.workflow-3.outputs.wiz_client_secret }}"
+          echo "Secret1 length: $(echo '${{ needs.workflow-1.outputs.wiz_client_secret }}' | wc -c)"
+          echo "Secret2 length: $(echo '${{ needs.workflow-2.outputs.wiz_client_secret }}' | wc -c)"
+          echo "Secret3 length: $(echo '${{ needs.workflow-3.outputs.wiz_client_secret }}' | wc -c)"
