@@ -9,21 +9,21 @@ on:
  
 jobs:
   workflow-1:
-    uses: testid1/ConjurWIZ/.github/workflows/reusable.yaml@main
+    uses: testid1/ConjurWIZ/.github/workflows/ConjurCalling.yaml@main
     with:
-      CONJUR_ORG_VARIABLE_PATH: "data/vault/conjurtest/conjurtest/username"
+      CONJUR_VARIABLE_PATH: "data/vault/conjurtest/conjurtest/username"
     secrets: inherit
  
   workflow-2:
-    uses: testid1/ConjurWIZ/.github/workflows/reusable.yaml@main
+    uses: testid1/ConjurWIZ/.github/workflows/ConjurCalling.yaml@main
     with:
-      CONJUR_ORG_VARIABLE_PATH: "data/vault/conjurtest/conjurtest/password"
+      CONJUR_VARIABLE_PATH: "data/vault/conjurtest/conjurtest/password"
     secrets: inherit
  
   workflow-3:
-    uses: testid1/ConjurWIZ/.github/workflows/reusable.yaml@main
+    uses: testid1/ConjurWIZ/.github/workflows/ConjurCalling.yaml@main
     with:
-      CONJUR_ORG_VARIABLE_PATH: "data/vault/conjurtest/conjurtest/address"
+      CONJUR_VARIABLE_PATH: "data/vault/conjurtest/conjurtest/address"
     secrets: inherit
  
   use-WIZ_CLIENT_SECRET:
