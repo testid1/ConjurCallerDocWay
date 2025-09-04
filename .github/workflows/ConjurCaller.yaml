@@ -32,7 +32,6 @@ jobs:
     steps:
       - name: Show masked Wiz secrets
         run: |
-          echo "${{ needs.workflow-1.outputs.wiz_client_secret }}"
           echo "::add-mask::${{ needs.workflow-1.outputs.wiz_client_secret }}"
           echo "::add-mask::${{ needs.workflow-2.outputs.wiz_client_secret }}"
           echo "::add-mask::${{ needs.workflow-3.outputs.wiz_client_secret }}"
