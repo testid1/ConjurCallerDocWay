@@ -11,19 +11,19 @@ jobs:
   workflow-1:
     uses: testid1/ConjurCalling/.github/workflows/ConjurCalling.yaml@main
     with:
-      CONJUR_VARIABLE_PATH: "data%2Fvault%2Fconjurtest%2Fconjurtest%2Fusername"
+      CONJUR_VARIABLE_PATH: "data/vault/conjurtest/conjurtest/username"
     secrets: inherit
  
   workflow-2:
     uses: testid1/ConjurCalling/.github/workflows/ConjurCalling.yaml@main
     with:
-      CONJUR_VARIABLE_PATH: "data%2Fvault%2Fconjurtest%2Fconjurtest%2Fpassword"
+      CONJUR_VARIABLE_PATH: "data/vault/conjurtest/conjurtest/password"
     secrets: inherit
  
   workflow-3:
     uses: testid1/ConjurCalling/.github/workflows/ConjurCalling.yaml@main
     with:
-      CONJUR_VARIABLE_PATH: "data%2Fvault%2Fconjurtest%2Fconjurtest%2Faddress"
+      CONJUR_VARIABLE_PATH: "data/vault/conjurtest/conjurtest/address"
     secrets: inherit
  
   use-WIZ_CLIENT_SECRET:
