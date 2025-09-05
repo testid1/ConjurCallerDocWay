@@ -19,7 +19,7 @@ jobs:
     needs: [setup-secrets]
     steps:
      - name: Use masked Wiz secrets
-     - run: |
+       run: |
         env:
          USER: ${{ env.USER }}
          PASS: ${{ env.PASS }}
