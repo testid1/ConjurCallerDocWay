@@ -17,12 +17,12 @@ jobs:
   use-secret:
     runs-on: ubuntu-latest
     needs: [setup-secrets]
+    env:
+     USER: ${{ env.USER }}
+     PASS: ${{ env.PASS }}
     steps:
      - name: Use masked Wiz secrets
-       run: |
-        env:
-         USER: ${{ env.USER }}
-         PASS: ${{ env.PASS }}
+       run: |  
          echo "Secret1 length: $(echo '${USER}' | wc -c)
   
   
