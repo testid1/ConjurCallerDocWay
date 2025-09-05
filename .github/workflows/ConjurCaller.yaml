@@ -15,8 +15,6 @@ jobs:
       CONJUR_ACCOUNT: ${{ secrets.CONJUR_ACCOUNT }}
       CONJUR_HOST_ID: ${{ secrets.CONJUR_HOST_ID }}   # e.g., host/github/myapp-ci
       CONJUR_API_KEY: ${{ secrets.CONJUR_API_KEY }}
-      USER: ${{ env.USER }}
-      PASS: ${{ env.PASS }}
 #      CONJUR_CERT: ${{ secrets.CONJUR_CERT }}         # optional
  
   use-secret:
