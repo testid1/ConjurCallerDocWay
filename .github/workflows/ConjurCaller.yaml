@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch secrets from Conjur (API key auth)
-        uses: ${{ secrets.CONJUR_REPO_VER }}
+        uses: cyberark/conjur-action@v2.0.12
         with:
           url: ${{ secrets.CONJUR_URL }}
           account: ${{ secrets.CONJUR_ACCOUNT }}
