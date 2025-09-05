@@ -23,7 +23,7 @@ jobs:
     steps:
      - name: Use masked Wiz secrets
        run: |  
-         echo "Secret1 length: $(echo '${{ env.USER }}' | wc -c)
+         echo "Secret1 length: $(echo '${{ env.USER }}' | wc -c)"
   
   
   
