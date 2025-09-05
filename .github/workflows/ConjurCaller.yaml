@@ -5,38 +5,22 @@ env:
  USER: ""
  PASS: ""
  
-jobs:
-  setup-secrets:
-    uses: testid1/ConjurCalling/.github/workflows/ConjurCalling.yaml@main
-    with:
-      CONJUR_VARIABLE_PATH: "data/vault/conjurtest/conjurtest/username|USER;data/vault/conjurtest/conjurtest/password|PASS"
-    secrets:
-      CONJUR_URL: ${{ secrets.CONJUR_URL }}
-      CONJUR_ACCOUNT: ${{ secrets.CONJUR_ACCOUNT }}
-      CONJUR_HOST_ID: ${{ secrets.CONJUR_HOST_ID }}   # e.g., host/github/myapp-ci
-      CONJUR_API_KEY: ${{ secrets.CONJUR_API_KEY }}
-#      CONJUR_CERT: ${{ secrets.CONJUR_CERT }}         # optional
- 
-  use-secret:
+jobs: 
+  fetch:
     runs-on: ubuntu-latest
-    needs: [setup-secrets]
-#    env:
-#     USER: ${{ env.USER }}
-#     PASS: ${{ env.PASS }}
     steps:
-     - name: Use masked Wiz secrets
-       run: |  
-         echo "Secret1 length: $(echo '${{ env.USER }}' | wc -c)"
-  
-  
-  
-  
-#  test:
-#    needs: setup-secrets
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v4
-#      - run: ./run-tests.sh
-#        env:
-#          USER: ${{ env.USER }}
-#          PASS: ${{ env.PASS }}
+      - name: Fetch secrets from Conjur (API key auth)
+        uses: cyberark/conjur-action@v2.0.12
+        with:
+          url: ${{ secrets.CONJUR_URL }}
+          account: ${{ secrets.CONJUR_ACCOUNT }}
+          host_id: ${{ secrets.CONJUR_HOST_ID }}
+          api_key: ${{ secrets.CONJUR_API_KEY }}
+          secrets: data/vault/conjurtest/conjurtest/username|USER;data/vault/conjurtest/conjurtest/password|PASS
+#          certificate: ${{ secrets.CONJUR_CERT }} # optional
+      - name: Use secrets from Conjur (API key auth)
+        id: setoutput
+        run: |
+          echo "${#USER}"
+        
+    
