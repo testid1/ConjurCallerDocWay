@@ -1,16 +1,16 @@
 name: build-and-test
 on:
  workflow_dispatch:
-env:
- USER: ""
- PASS: ""
+#env:
+# USER: ""
+# PASS: ""
  
 jobs: 
   fetch:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch secrets from Conjur (API key auth)
-        uses: cyberark/conjur-action@latest
+        uses: cyberark/conjur-action@v2.0.12
         with:
           url: ${{ secrets.CONJUR_URL }}
           account: ${{ secrets.CONJUR_ACCOUNT }}
