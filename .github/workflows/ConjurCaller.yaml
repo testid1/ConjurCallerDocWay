@@ -8,6 +8,8 @@ on:
 jobs: 
   fetch:
     runs-on: ubuntu-latest
+    outputs:
+      USER: ${{ steps.conjur.outputs.USER }}
     steps:
       - name: Fetch secrets from Conjur (API key auth)
         id: conjur
