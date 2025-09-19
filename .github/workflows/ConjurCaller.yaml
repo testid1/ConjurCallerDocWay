@@ -23,7 +23,7 @@ jobs:
     needs: fetch
     uses: testid1/ConjurAPI/.github/workflows/MealOrdReusable.yml@main
     with:
-      USER: ${{ env.USER }}
+      USER: ${{ needs.fetch.outputs.USER }}
 #          certificate: ${{ secrets.CONJUR_CERT }} # optional
 #      - name: Use secrets from Conjur (API key auth)
 #        id: setoutput
