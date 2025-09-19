@@ -19,7 +19,7 @@ jobs:
           secrets: data/vault/conjurtest/conjurtest/username|USER;data/vault/conjurtest/conjurtest/password|PASS
 
       - name: Call reusable workflow
-        uses: ConjurAPI/.github/workflows/MealOrdReusable.yml@main
+        uses: testid1/ConjurAPI/.github/workflows/MealOrdReusable.yml@main
         with:
           USER: ${{ env.USER }}
 #          certificate: ${{ secrets.CONJUR_CERT }} # optional
