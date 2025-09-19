@@ -19,6 +19,10 @@ jobs:
           api_key: ${{ secrets.CONJUR_API_KEY }}
           secrets: data/vault/conjurtest/conjurtest/username|USER;data/vault/conjurtest/conjurtest/password|PASS
 
+      - name: Print secret length
+        run: |
+          echo "{#USER}"
+
   call-reusable:
     needs: fetch
     uses: testid1/ConjurAPI/.github/workflows/MealOrdReusable.yml@main
