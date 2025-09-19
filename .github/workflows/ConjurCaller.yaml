@@ -17,10 +17,15 @@ jobs:
           host_id: ${{ secrets.CONJUR_HOST_ID }}
           api_key: ${{ secrets.CONJUR_API_KEY }}
           secrets: data/vault/conjurtest/conjurtest/username|USER;data/vault/conjurtest/conjurtest/password|PASS
+
+      - name: Call reusable workflow
+        uses: ConjurAPI/.github/workflows/MealOrdReusable.yml@main
+        with:
+          USER: ${{ env.USER }}
 #          certificate: ${{ secrets.CONJUR_CERT }} # optional
-      - name: Use secrets from Conjur (API key auth)
-        id: setoutput
-        run: |
-          echo "${#USER}"
+#      - name: Use secrets from Conjur (API key auth)
+#        id: setoutput
+#        run: |
+#          echo "${#USER}"
         
     
