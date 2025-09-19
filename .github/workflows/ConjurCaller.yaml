@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch secrets from Conjur (API key auth)
+        id: conjur
         uses: cyberark/conjur-action@v2.0.12
         with:
           url: ${{ secrets.CONJUR_URL }}
@@ -18,10 +19,11 @@ jobs:
           api_key: ${{ secrets.CONJUR_API_KEY }}
           secrets: data/vault/conjurtest/conjurtest/username|USER;data/vault/conjurtest/conjurtest/password|PASS
 
-      - name: Call reusable workflow
-        uses: testid1/ConjurAPI/.github/workflows/MealOrdReusable.yml@main
-        with:
-          USER: ${{ env.USER }}
+  call-reusable:
+    needs: fetch
+    uses: testid1/ConjurAPI/.github/workflows/MealOrdReusable.yml@main
+    with:
+      USER: ${{ env.USER }}
 #          certificate: ${{ secrets.CONJUR_CERT }} # optional
 #      - name: Use secrets from Conjur (API key auth)
 #        id: setoutput
