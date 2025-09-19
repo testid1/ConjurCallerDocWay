@@ -21,7 +21,7 @@ jobs:
 
       - name: Print secret length
         run: |
-          echo "{#USER}"
+          echo "${#USER}"
 
   call-reusable:
     needs: fetch
