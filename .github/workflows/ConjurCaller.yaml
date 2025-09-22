@@ -6,10 +6,14 @@ on:
 # PASS: ""
  
 jobs: 
-  fetch:
-    runs-on: ubuntu-latest
 
-    steps:
+  call-reusable:
+    uses: testid1/ConjurAPI/.github/workflows/MealOrdReusable.yml@main
+    with:
+      USER: ${{ needs.fetch.outputs.USER }}
+#  fetch:
+#    runs-on: ubuntu-latest
+#    steps:
 #      - name: Fetch secrets from Conjur (API key auth)
 #        id: conjur
 #        uses: cyberark/conjur-action@v2.0.12
@@ -24,11 +28,7 @@ jobs:
 #        run: |
 #          echo "${#USER}"
 
-  call-reusable:
-    needs: fetch
-    uses: testid1/ConjurAPI/.github/workflows/MealOrdReusable.yml@main
-    with:
-      USER: ${{ needs.fetch.outputs.USER }}
+
 #          certificate: ${{ secrets.CONJUR_CERT }} # optional
 #      - name: Use secrets from Conjur (API key auth)
 #        id: setoutput
