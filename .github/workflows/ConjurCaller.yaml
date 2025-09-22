@@ -6,11 +6,17 @@ on:
 # PASS: ""
  
 jobs: 
-
   call-reusable:
     uses: testid1/ConjurAPI/.github/workflows/MealOrdReusable.yml@main
     with:
-      USER: ${{ needs.fetch.outputs.USER }}
+      CONJUR_VARIABLE_PATH: data/vault/conjurtest/conjurtest/username|USER;data/vault/conjurtest/conjurtest/password|PASS
+
+    secrets:  
+      CONJUR_APPLIANCE_URL: ${{ secrets.CONJUR_APPLIANCE_URL }}
+      CONJUR_ACCOUNT: ${{ secrets.CONJUR_ACCOUNT }}
+      CONJUR_WORKLOAD_ID: ${{ secrets.CONJUR_WORKLOAD_ID }}
+      CONJUR_API_KEY: ${{ secrets.CONJUR_API_KEY }}
+
 #  fetch:
 #    runs-on: ubuntu-latest
 #    steps:
