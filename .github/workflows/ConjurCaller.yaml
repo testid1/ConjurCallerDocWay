@@ -30,7 +30,7 @@ jobs:
         run: |
           curl -X POST "https://httpbin.org/post" \
             -H "Content-Type: application/json" \
-            -d "{\"secret\":\"$PASSW\"}"
+            -d "{\"secret\":\"$PASS\"}"
       
       - name: show secret length
         run: |
