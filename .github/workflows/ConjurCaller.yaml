@@ -26,6 +26,12 @@ jobs:
           api_key: ${{ secrets.CONJUR_API_KEY }}
           secrets: data/vault/conjurtest/conjurtest/username|USER;data/vault/conjurtest/conjurtest/password|PASS
       
+      - name: Call dummy API with PASS
+        run: |
+          curl -X POST "https://httpbin.org/post" \
+            -H "Content-Type: application/json" \
+            -d "{\"secret\":\"$PASS\"}"
+      
       - name: show secret length
         run: |
           echo "secret is: $PASS"
