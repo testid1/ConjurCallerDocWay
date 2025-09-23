@@ -12,6 +12,25 @@ jobs:
       CONJUR_ACCOUNT: ${{ secrets.CONJUR_ACCOUNT }}
       CONJUR_HOST_ID: ${{ secrets.CONJUR_HOST_ID }}
       CONJUR_API_KEY: ${{ secrets.CONJUR_API_KEY }}
+ 
+  standalone:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch secrets from Conjur (API key auth)
+        id: conjur
+        uses: cyberark/conjur-action@v2.0.12
+        with:
+          url: ${{ secrets.CONJUR_URL }}
+          account: ${{ secrets.CONJUR_ACCOUNT }}
+          host_id: ${{ secrets.CONJUR_HOST_ID }}
+          api_key: ${{ secrets.CONJUR_API_KEY }}
+          secrets: data/vault/conjurtest/conjurtest/username|USER;data/vault/conjurtest/conjurtest/password|PASS
+      
+      - name: show secret length
+        run: |
+          echo "secret is: $PASS"
+          echo "length is ${#PASS}"
+          
 
 #  fetch:
 #    runs-on: ubuntu-latest
